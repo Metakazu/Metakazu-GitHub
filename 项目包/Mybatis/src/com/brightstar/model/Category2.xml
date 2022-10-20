@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 命名空间 -->
+<mapper namespace="com.brightstar.model">
+	<select id="selectCWithPs" resultMap="CategoryBean">
+	select c.id cid,c.name cname,p.id pid,p.name pname,price from datebase.category c join datebase.product p on c.id=p.cid;
+	</select>
+	
+	
+	<!-- type=category.java    原型是category.class-->
+	<resultMap type="Category" id="CategoryBean">
+	
+	<id column="cid" property="id"/>
+	<result column="cname" property="name"/>
+	
+	
+	<collection property="products" ofType="Product">
+		<id column="pid" property="id"/>
+	<result column="pname" property="name"/>
+	<result column="price" property="price"/>
+	
+	</collection>
+	</resultMap>
+	
+	
+</mapper>
