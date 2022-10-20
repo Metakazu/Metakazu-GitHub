@@ -1,0 +1,112 @@
+body {
+	background-color: rgb(10, 1, 1);
+	color: white;
+	font-family: 'Montserrat', sans-serif;
+	/* 设置内部元素与主轴同步 */
+	flex-direction: column;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	margin: 0;
+}
+
+.box {
+	display: flex;
+	margin: auto;
+	height: 300px;
+	width: 300px;
+	position: relative;
+	/* 缩放倍数 */
+	transform: scale(0.5);
+}
+
+.pointer {
+	background-color: #fff;
+	border-radius: 50%;
+	height: 20px;
+	width: 20px;
+	display: block;
+}
+
+.circle {
+	background-color: #000000;
+	height: 126%;
+	width: 100%;
+	border-radius: 20%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+}
+
+.gradient-circle {
+	background: conic-gradient(
+		pink 0%,
+		red 0%,
+		gold 40%,
+		rgb(170, 119, 26) 60%,
+		#06d28b 60%,
+		#068e43 100%
+	);
+	height: 400px;
+	width: 320px;
+	z-index: -2;
+	border-radius: 20%;
+	position: absolute;
+	top: -10px;
+	left: -10px;
+}
+
+table {
+	height: 320px;
+	width: 240px;
+	z-index: 1;
+
+	position: absolute;
+	top: 30px;
+	left: 60px;
+}
+
+.pointer-boxs {
+	position: absolute;
+	top: 80px;
+	left: 140px;
+	width: 30px;
+	height: 190px;
+	/* -webkit-animation: 10s linear 0s infinite alternate move_eye; */
+	/* animation: 1s linear 0s linear 0s infinite alternate move_eye; */
+	animation: spin 60s linear infinite;
+}
+
+.pointer-boxm {
+	position: absolute;
+	top: 80px;
+	left: 140px;
+	width: 30px;
+	height: 190px;
+	/* -webkit-animation: 10s linear 0s infinite alternate move_eye;
+	animation: 1s linear 0s linear 0s infinite alternate move_eye; */
+	animation: spin 3600s linear infinite;
+}
+
+@keyframes spin {
+	to {
+		transform: rotate(1turn);
+	}
+}
+/* @-webkit-keyframes move_eye {
+	from {
+		margin-top: 0%;
+	}
+	to {
+		margin-top: 100%;
+	}
+}
+@keyframes move_eye {
+	from {
+		margin-top: 0%;
+	}
+	to {
+		margin-top: 100%;
+	}
+} */

@@ -1,0 +1,67 @@
+body {
+	background: url(https://www.cnet.com/a/img/resize/5aa51f069319b30837e88d1b3d6fc7bd5e497e78/2019/02/01/f5598e1c-89de-4f9c-bca7-62fa3ebdadcd/screen-shot-2019-02-01-at-10-27-38-am.png?auto=webp);
+	width: 100%;
+	height: 40%;
+	background-size: 100% 100%;
+	font-family: 'Open Sans', sans-serif;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+	margin: 0;
+}
+.from {
+	background-color: #e3eaef;
+	padding: 30px 40px;
+}
+h2 {
+	color: white;
+	text-align: center;
+}
+h4 {
+	color: white;
+	text-align: justify;
+}
+
+.a input {
+	border: 2px solid #f0f0f0;
+	border-radius: 4px;
+	display: block;
+	width: 100%;
+	padding: 10px;
+	font-size: 14px;
+}
+
+.a input:focus {
+	outline: 0;
+	border-color: #777;
+}
+.b:hover {
+	-webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.b:active {
+	background-color: rgb(4, 0, 0);
+}
+
+.b {
+	font-size: 15px;
+	color: gray;
+	border-radius: 100vh;
+	background-image: -webkit-linear-gradient(110deg, #e9defa 0%, #fbfcdb 100%);
+	background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%);
+	-webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.c {
+	color: white;
+	text-size-adjust: 20px;
+	background-color: darkred;
+}
+.ok {
+	color: white;
+	text-size-adjust: 20px;
+	background-color: green;
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8" />
+		<title>フォーム検証</title>
+		<script src="/Users/kazumeta/Desktop/HTML/jquery.min.js"></script>
+		<script src="/Users/kazumeta/Downloads/rolldate-master/dist/rolldate.js"></script>
+		<script>
+			$(function () {
+				new Rolldate({
+					el: '#example',
+					format: 'MM-YYYY',
+				});
+
+				new Rolldate({
+					el: '#example',
+					minStep: 3,
+				});
+
+				new Rolldate({
+					el: '#example',
+					beginYear: 2000,
+					endYear: 2100,
+				});
+
+				new Rolldate({
+					el: '#example',
+					lang: {
+						title: 'Select A Date',
+						cancel: 'Cancel',
+						confirm: 'Confirm',
+						year: '',
+						month: '',
+						day: '',
+						hour: '',
+						min: '',
+						sec: '',
+					},
+				});
+
+				new Rolldate({
+					el: '#example',
+					init: function () {
+						console.log('On init');
+					},
+					moveEnd: function (scroll) {
+						console.log(scroll);
+						console.log('scroll end');
+					},
+					confirm: function (date) {
+						console.log(date);
+						console.log('confirm');
+					},
+					cancel: function () {
+						console.log('cancel');
+					},
+				});
+
+				new Rolldate({
+					el: '#example',
+					value: '2017-10-21 23:52:50',
+				});
+			});
+		</script>
+	</head>
+
+	<body>
+		<input readonly type="text" id="example" placeholder="" />
+	</body>
+</html>

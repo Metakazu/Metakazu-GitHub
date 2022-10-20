@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>サンプルサイト</title>
+		<script src="/Users/kazumeta/Desktop/HTML/jquery.min.js"></script>
+		<script>
+			$(function () {
+				// $('h2').css('color', 'blue');
+				// $('li').css('color', 'green');
+				// $('#samplePage').css('margin-left', '50px');
+				// $('.tanaha').css('color', 'red');
+				// $('.tanaha').css('background-color', '#229c8174');
+				// $('.tanaha').css('width', '100px');
+
+				// $('div>p').css('width', '100px');
+
+				// $('h2').click(function () {
+				// 	//键出fadeout事件
+				// 	$('.akasa').fadeOut();
+				// });
+
+				// $('h2').hover(
+				// 	function () {
+				// 		$('.akasa').css('color', 'red');
+				// 	},
+				// 	function () {
+				// 		$('.akasa').css('color', 'blue');
+				// 	}
+				// );
+
+				// $('.tanaha').click(function () {
+				// 	//当前对象
+				// 	$(this).css('background-color', '#229c8174');
+				// 	$(this).css('width', '100px');
+				// });
+
+				// $('button').on('click', function () {
+				// 	//有参数的时候 取值
+				// 	alert($(this).text());
+				// 	//再附值
+				// 	$(this).text('wowowowowoow');
+				// });
+
+				//绑定两个事件
+				// $('button').on('dblclick mouseleave', function () {
+				// 	$(this).text('两个事件');
+				// });
+
+				$('button').on({
+					dblclick: function () {
+						$(this).css('color', 'red');
+					},
+					mouseleave: function () {
+						$(this).text('鼠标离开后的效果');
+					},
+				});
+			});
+		</script>
+	</head>
+
+	<body>
+		<header>
+			<h1>Sample Page</h1>
+		</header>
+
+		<div id="samplePage">
+			<h2>ようこそサンプルページへ</h2>
+
+			<ul class="akasa">
+				<li>あいうえお</li>
+				<li>かきくけこ</li>
+				<li>さしすせそ</li>
+			</ul>
+
+			<p class="tanaha">たちつてと</p>
+			<p class="tanaha">なにぬねの</p>
+			<p class="tanaha">はひふへほ</p>
+		</div>
+		<button>点我</button>
+	</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<title>DOM</title>
+		<script type="text/javascript">
+			function getValue() {
+				var userId = document.getElementById('userId').value;
+				alert(userId);
+			}
+			function test() {
+				var pTest = document.getElementById('pTest');
+				pTest.click();
+				// pTest.innerHTML = "<h1>getElementByIdの活用</h1>";
+				// pTest.innerText = "<h1>getElementByIdの活用</h1>";
+				// pTest.style.background = "red";
+				pTest.className = 'pGreen';
+			}
+			function genderClear() {
+				var genders = document.getElementsByName('gender');
+				for (var i = 0; i < genders.length; i++) {
+					genders[i].checked = false;
+				}
+			}
+			function colorAllSelect() {
+				var colors = document.getElementsByName('color');
+				for (var i = 0; i < colors.length; i++) {
+					colors[i].checked = true;
+				}
+			}
+			function ch() {
+				document.getElementById('div1').style.display = 'block';
+			}
+			function ch1() {
+				document.getElementById('div1').style.display = 'none';
+			}
+		</script>
+		<style>
+			.pYellow {
+				background-color: yellow;
+			}
+
+			.pGreen {
+				background-color: green;
+			}
+		</style>
+	</head>
+
+	<body>
+		ユーザーID：<input type="text" id="userId" onblur="getValue();" />
+		<br />
+		性別：
+		<input type="radio" name="gender" value="男" />男
+		<input type="radio" name="gender" value="女" />女
+		<input type="radio" name="gender" value="その他" />その他
+		<br />
+		好きな色：
+		<input type="checkbox" name="color" value="赤" />赤
+		<input type="checkbox" name="color" value="青" />青
+		<input type="checkbox" name="color" value="黄" />黄
+		<input type="checkbox" name="color" value="緑" />緑
+		<br />
+		<input type="button" value="ボタン" onclick="test();" />
+		<input type="button" value="クリアボタン" onclick="genderClear();" />
+		<input type="button" value="全て選択ボタン" onclick="colorAllSelect();" />
+		<p id="pTest" class="pYellow" onclick="javascript:alert(1)">
+			getElementByIdの活用
+		</p>
+		<span>a</span><span>b</span>
+		<div>c</div>
+		<div>d</div>
+		<a href="#" onMouseOver="ch()" onMouseOut="ch1()">移入显示div1</a>
+		<div
+			id="div1"
+			style="background-color: yellowgreen; height: 50px; width: 50px"
+		></div>
+	</body>
+</html>
