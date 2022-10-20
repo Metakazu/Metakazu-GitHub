@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 命名空间 -->
+<mapper namespace="com.brightstar.model">
+	<select id="selectOWithOis" resultMap="Orderbean">
+		SELECT o.id 订单人ID,o.name 订单人,oi.id oiid ,oi.number 数量,p.name 商品名,p.id 商品ID,price 单价 FROM datebase.order_ o join datebase.order_ITEM oi on o.id=oi.oid join datebase.product p on p.id=oi.pid;
+	</select>
+
+	<resultMap type="Order" id="Orderbean">
+		<id column="订单人ID" property="id" />
+		<result column="订单人" property="name" />
+
+
+		<collection property="Items" ofType="OrderItem">
+
+			<id column="oiid" property="id" />
+			<result column="数量" property="number" />
+
+			<association property="product" javaType="Product">
+
+				<id column="商品ID" property="id" />
+				<result column="商品名" property="name" />
+				<result column="单价" property="price" />
+
+			</association>
+
+		</collection>
+	</resultMap>
+
+
+</mapper>
