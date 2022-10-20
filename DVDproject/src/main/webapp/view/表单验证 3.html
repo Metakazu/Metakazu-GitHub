@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<title>📄表单验证</title>
+		<script src="/Users/kazumeta/Desktop/HTML/jquery.min.js"></script>
+		<script src="script.js"></script>
+		<link rel="stylesheet" href="form.css" />
+	</head>
+	<body>
+		<form align="center" class="form">
+			<h2>会员登录</h2>
+			<h4 class="a">
+				用户名:
+				<input type="text" name="user" id="userId" placeholder="请输入用户名" />
+			</h4>
+
+			<h4 class="a">
+				密码:
+				<input
+					type="password"
+					name="user"
+					id="password"
+					placeholder="请输入6位以上密码"
+				/>
+			</h4>
+
+			<h4 class="a">
+				<p>
+					确认密码:
+					<input
+						type="password"
+						name="user"
+						id="password2"
+						placeholder="请再次输入密码"
+					/>
+				</p>
+			</h4>
+
+			<!-- 提示用户是否报错的区域 -->
+			<p id="ptest" class="c"></p>
+
+			<!--单击确认按钮，提交表单，进行input区域的检查-->
+			<input type="button" class="b" onclick="clearvalue()" value="重置" />
+			<input
+				type="button"
+				style="margin-left: 50px"
+				class="b"
+				onclick="check()"
+				value="确定"
+			/>
+		</form>
+	</body>
+</html>
