@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.brightstar.mapper.StudentMapper">
+	<!-- 登录学生查看自己的登录科目 -->
+	<select id="selectStuWithSAndC" resultMap="StudentBean" parameterType="Integer">
+		SELECT 
+			STU.SID
+			,STU.SNAME
+			,C.CID
+			,S.MASTER 
+			,C.CNAME
+			,C.WEEKDAY
+        	,C.CTIME
+		FROM 
+			datebase.STUDENT AS STU 
+		JOIN 
+			datebase.SCORE AS S 
+		ON 
+			S.SID = STU.SID 
+		JOIN 
+			datebase.COURSE AS C 
+		ON 
+			S.CID = C.CID
+		WHERE
+        	S.SID = #{sid};
+	</select>
+	<resultMap id="StudentBean" type="Student">
+		<id column="sid" property="sid" />
+		<result column="sname" property="sname"/>
+		<collection property="scores" ofType="Score" >
+			<id column="cid" property="cid"/>
+			<result column="master" property="master"/>
+			<association property="course" javaType="Course">
+				<result column="cname" property="cname"/>
+				<result column="weekday" property="weekday"/>
+				<result column="ctime" property="ctime"/>
+			</association>
+		</collection>
+	</resultMap>
+	
+	<!-- 确认在籍学生  -->
+	<select id="selectAllStudent" resultMap="Student">
+		SELECT 
+			m.DPID
+			,m.DPName
+			,s.MID
+			,s.SID
+			,s.SNAME
+			,m.mname 
+		FROM 
+			datebase.Student s 
+		join 
+			datebase.MAJOR m 
+		on
+			s.MID = m.MID;
+	 </select>
+	<resultMap id="Student" type="Student">
+		<id property="sid" column="sid"/>
+		<result property="sname" column="sname"/>
+		<association property="major" javaType="Major">
+			<id property="mid" column="mid"/>
+			<result property="mname" column="mname"/>
+			<result property="dpid" column="dpid"/>
+			<result property="dpname" column="dpname"/>		
+		</association>
+	</resultMap>
+	
+	<!-- 学生登录核对 -->
+	 <select id="findAllStudent" resultType="Student" parameterType="Student">
+	 	SELECT SID
+	 		,sname
+	 		,PASSWORD 
+ 		FROM 
+ 			datebase.STUDENT 
+ 		WHERE 
+ 			SID = #{sid} 
+ 		AND 
+ 			PASSWORD = #{password};
+ 	 </select>
+ 	 
+ 	 
+</mapper>

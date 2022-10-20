@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.brightstar.mapper.CourseMapper">
+	<!-- 查看所有课程内容 -->
+	<select id="selectAllCourse" resultMap="CourseBean">
+		SELECT
+			C.CID CID
+			,C.CNAME CNAME
+			,C.CTYPE CTYPE
+			,C.STD CSTD
+			,C.WEEKDAY WEEKDAY
+			,C.CTIME CTIME
+			,M.MID MID
+			,M.DPNAME MDPNAME
+			,M.MNAME MNAME
+		FROM
+			datebase.MAJOR M
+		JOIN
+			datebase.COURSE C
+		ON
+			M.MID = C.MID;
+	</select>
+	<resultMap type="Course" id="CourseBean">
+		<id column="cid" property="cid" />
+		<result column="cname" property="cname" />
+		<result column="ctype" property="ctype" />
+		<result column="cstd" property="std" />
+		<result column="weekday" property="weekday" />
+		<result column="ctime" property="ctime" />		
+		<association property="major" javaType="major">
+			<id column="mid" property="mid" />
+			<result column="mdpname" property="dpname" />
+			<result column="mname" property="mname" />
+		</association>
+	</resultMap>
+	
+	<!-- 查看选中课程内容 -->
+	<select id="selectOneCourse" resultType="Course" parameterType="Integer">
+		SELECT CID,CNAME,CTYPE,CREDIT,WEEKDAY,CTIME,teacher,STD_MAX,STD,CPREID,CMODE FROM datebase.COURSE WHERE CID = #{cid};
+	</select>
+	<!-- 查询先修科目 -->
+	<select id="selectPreCourse" resultType="String" parameterType="Integer">
+		SELECT CNAME FROM datebase.COURSE WHERE CID = #{cid};
+	</select>
+	<!-- 查询科目时间 -->
+	<select id="selectTimeOfOneCourse" resultType="Course" parameterType="Integer">
+		Select WEEKDAY,CTIME,STD_MAX,STD FROM datebase.COURSE WHERE CID =  #{cid};
+	</select>
+	
+	<select id="mainSelectAllCourse" resultType="Course" parameterType="Course">
+		SELECT * 
+		FROM 
+			datebase.COURSE C 
+		JOIN 
+			datebase.MAJOR M
+		ON
+			M.MID = C.MID 
+		<where>
+			<if test="cname!=null and cname!=''">
+			<bind name="cname" value="'%' + cname + '%'"/>
+			CNAME LIKE #{cname}
+			</if>
+			<if test="dpname!=null and dpname!=''">
+			<bind name="dpname" value="'%' + dpname + '%'"/>
+			 	AND DPNAME LIKE #{dpname}
+			</if>
+			<if test="mname!=null and mname!=''">
+			<bind name="mname" value="'%' + mname + '%'"/>
+			 	AND MNAME LIKE #{mname}
+			</if>
+			<if test="cmode!=null and cmode!=''">
+			 	AND CMODE = #{cmode}
+			</if>
+			<if test="ctype!=null and ctype!=0">
+			 	AND CTYPE = #{ctype}
+			</if>
+			<if test="weekday!=null and weekday!=0">
+			 	AND WEEKDAY = #{weekday}
+			</if>
+			<if test="ctime!=null and ctime!=0">
+			 	AND CTIME = #{ctime};
+			</if>
+		</where>
+	</select>
+</mapper>
+
+	
+

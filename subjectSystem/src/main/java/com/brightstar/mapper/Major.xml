@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.brightstar.mapper.MajorMapper">
+	<!-- 查看所有专门情报 -->
+<!-- 	<select resultType="Major" id="selectAllMajor">
+		SELECT * FROM MAJOR; 
+	</select> -->
+	<!-- 左列 -->
+	<select id="selectAllMajor" resultType="Major" parameterType="Map">
+	  	SELECT distinct dpid,concat(dpid,dpname)as dpname FROM datebase.MAJOR;
+	 </select>
+	 <!-- 右列 -->
+	 <select id="selectAllMajor2" resultType="Major" parameterType="Integer">
+		 SELECT mid,concat(mid,mname) as mname FROM datebase.MAJOR where dpid=#{dpid};
+	 </select>
+	 
+	 <select id="selectAllMajor3" resultType="Course" parameterType="Integer">
+  		SELECT cid,cname,ctype,credit,std_max,std,cmode FROM datebase.COURSE where mid=#{mid};
+  	</select>
+</mapper>

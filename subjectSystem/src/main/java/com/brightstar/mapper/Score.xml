@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.brightstar.mapper.ScoreMapper">
+	
+	
+	<!-- 登录学生删除所有的登录科目 -->
+	<delete id="deleteAllCourse" parameterType="Integer">
+		DELETE FROM datebase.SCORE WHERE SID = #{sid};
+	</delete>
+	<!-- 登录学生删除指定的登录科目 -->
+	<delete id="deleteOneCourse" parameterType="SCORE">
+  		DELETE FROM datebase.SCORE WHERE SID = #{sid} AND CID = #{cid};
+ 	</delete>
+	
+	<!-- 登录学生替换自己的登录科目 -->
+	<update id="updateOneCourse" parameterType="Score">
+		UPDATE SCORE SET CID = #{newcid} WHERE CID = #{cid} AND SID = #{sid};
+	</update>
+	<!-- 确认是否选择同一节课 -->
+	<select id="checkOneCourse" parameterType="Score" resultMap="ScoreBean">	
+ 		SELECT  
+    		C.CNAME
+    		,S.CID 
+		FROM datebase.SCORE AS S  
+		JOIN datebase.COURSE AS C
+		ON S.CID = C.CID 
+		WHERE C.CID =  #{cid} AND S.SID = #{sid};
+	</select>
+	<resultMap type="Score" id="ScoreBean">
+		<id column="cid" property="cid"/>
+		<association property="course" javaType="Course">
+			<result column="cname" property="cname"/>
+		</association> 
+	</resultMap>
+	
+	<!-- 确认是否选了同一时间的课 -->
+	<select id="checkOneCourseBytime" parameterType="Score" resultType="Score">
+		SELECT  
+    		C.CNAME
+    		,S.CID 
+		FROM datebase.SCORE AS S  
+		JOIN datebase.COURSE AS C 
+		ON S.CID = C.CID 
+        WHERE S.SID =  #{sid} AND WEEKDAY =  #{weekday} AND CTIME =  #{ctime};
+	</select>
+	
+	<select id="insertCourseWithProcedure" parameterType="Score">
+		CALL datebase.INSERT_COURSE(#{cid},#{sid});
+	</select>
+	
+</mapper>
