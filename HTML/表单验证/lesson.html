@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8" />
+		<title>フォーム検証</title>
+		<script src="../jquery.min.js"></script>
+		<script type="text/javascript">
+			$(function () {
+				$('#userId').blur(userIdCheck);
+				$('#password').blur(passwordCheck);
+				$('#repassword').blur(repasswordCheck);
+				$('#regist').click(regist);
+			});
+
+			function userIdCheck() {
+				var userId = $('#userId').val();
+				var userIdMsg = $('#passwordMsg').val();
+				if (userId == null || userId == '') {
+					$('#passwordMsg').show();
+					return false;
+				} else {
+					$('#passwordMsg').hide();
+					return true;
+				}
+			}
+
+			function passwordCheck() {
+				var password = $('#password').val();
+				var passwordMsg = $('#passwordMsg').val();
+				if (password.length < 6) {
+					$('#password').show();
+					return false;
+				} else {
+					$('#passwordMsg').hide();
+					return true;
+				}
+			}
+
+			function repasswordCheck() {
+				var password = $('#password').val();
+				var repassword = $('#repassword').val();
+				if (password != repassword) {
+					$('#repassword').show();
+					return false;
+				} else {
+					$('#repasswordMsg').hide();
+					return true;
+				}
+			}
+
+			function regist() {
+				if (userIdCheck() && passwordCheck() && repasswordCheck()) {
+					$('#registForm').submit();
+				}
+			}
+		</script>
+	</head>
+
+	<body>
+		<form action="0906practice.html" id="registForm">
+			<!--用户名不能为空-->
+			ユーザーID：<input type="text" id="userId" onblur="userIdCheck();" />
+			<span style="display: none; color: red" id="userIdMsg"
+				>userId error!</span
+			>
+			<br />
+			<!--密码长度不能小于6位-->
+			パスワード：<input
+				type="password"
+				id="password"
+				onblur="passwordCheck();"
+			/>
+			<span style="display: none; color: red" id="passwordMsg"
+				>password error!</span
+			>
+			<br />
+			<!--两次密码必须一致-->
+			確認用パスワード：<input
+				type="password"
+				id="repassword"
+				onblur="repasswordCheck();"
+			/>
+			<span style="display: none; color: red" id="repasswordMsg"
+				>repassword error!</span
+			>
+			<br />
+			<input type="button" id="regist" value="登録" onclick="regist() " />
+		</form>
+	</body>
+</html>

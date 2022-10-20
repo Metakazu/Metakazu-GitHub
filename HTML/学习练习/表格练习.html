@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="cn">
+
+<head>
+    <meta charset="UTF-8">
+    <title>制表练习</title>
+
+    <!--更改主背景颜色-->
+    <style>
+        body {
+            background-color: #3e46e174;
+        }
+    </style>
+</head>
+
+<body>
+    <table border="20">
+        <!--先建立表格，用table包围住-->
+        <!--⬆️這個屬性以像素為單位，定義了圍繞於表格框架的大小。-->
+        <tr>
+            <th>表格头部1</th>
+            <th>表格头部2</th>
+            <th>表格头部3</th>
+        </tr>
+        <tr>
+            <!--第一行-->
+            <!--表内数据-->
+            <td>数据一</td>
+            <td>数据二</td>
+            <td>数据二点五</td>
+        </tr>
+
+        <tr>
+            <!--第二行-->
+            <td>数据三</td>
+            <td>数据四</td>
+        </tr>
+    </table>
+
+    <table border="1">
+        <!--横方向につなげる-->
+        <tr>
+            <th>表格头部1</th>
+            <th colspan="2">跨了两列的头部</th>
+        </tr>
+        <tr><!--縦方向につなげる-->
+            <td rowspan="2">跨了两行的数据</td>
+            <td>数据二</td>
+        </tr>
+        <tr>
+            <td>数据三</td>
+            <td>数据四</td>
+        </tr>
+    </table>
+
+</body>
+
+</html>
